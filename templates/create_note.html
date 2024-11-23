@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Criar Nova Nota</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center px-4 py-8">
+      <div
+        class="max-w-2xl w-full bg-white shadow-lg rounded-lg overflow-hidden"
+      >
+        <div class="p-6">
+          <h1 class="text-3xl font-bold text-gray-800 mb-6">Criar Nova Nota</h1>
+          <form
+            action="{{ url_for('create_note') }}"
+            method="post"
+            class="space-y-6"
+          >
+            <div>
+              <label
+                for="title"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Título:</label
+              >
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Digite o título da sua nota"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+
+            <div>
+              <label
+                for="content"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Conteúdo:</label
+              >
+              <textarea
+                id="content"
+                name="content"
+                rows="8"
+                placeholder="Escreva o conteúdo da sua nota aqui..."
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              ></textarea>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <button
+                type="submit"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300"
+              >
+                Criar Nota
+              </button>
+              <a
+                href="{{ url_for('index') }}"
+                class="text-blue-500 hover:text-blue-600 font-semibold transition duration-300"
+              >
+                Voltar ao Início
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

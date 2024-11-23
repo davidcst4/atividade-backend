@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Notas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header class="bg-white shadow-md py-4 px-8">
+        <div class="flex items-center justify-between">
+          <a href="/" class="text-3xl font-bold text-gray-800">Notas</a>
+          <a
+            href="/create"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow"
+          >
+            + Nova Nota
+          </a>
+        </div>
+      </header>
+
+      <!-- Grid de Notas -->
+      <main class="flex-grow p-8">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          {% for note in notes %}
+          <div
+            class="bg-{{ loop.cycle('yellow', 'red', 'green', 'blue') }}-100 p-4 rounded-md shadow-md"
+          >
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">
+              {{ note.title }}
+            </h2>
+            <p class="text-gray-600 text-sm mb-4">
+              {{ note.content[:100] }}{{ '...' if note.content|length > 100 }}
+            </p>
+            <div
+              class="flex items-center justify-between text-gray-500 text-xs"
+            >
+              <span>{{ note.date_created.strftime('%B %d, %Y') }}</span>
+              <a
+                href="/note/{{ note.id }}"
+                class="text-blue-500 hover:underline"
+              >
+                Ver mais
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
